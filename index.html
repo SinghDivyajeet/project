@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body ng-app="ngRoutingDemo">
+        <h1>Angular Routing Demo</h1>
+    
+        <div ng-view>
+            <!-- To view the dynamically injected HTML -->
+            
+
+        </div>
+        <input type="button" value="Go to Login!!" ng-click="goToLogin()">
+        <script>
+          //Instantiating Module
+          var app = angular.module('ngRoutingDemo',["ngRoute"]);
+
+          //Configuration for routing.
+          app.config(function($routeProvider){
+              $routeProvider.when('/',{
+                templateUrl:"index.html",
+                controller:"indexController"
+              }).when('/login',{
+                  templateUrl:"login.html",
+                  controller:"loginController"
+              }).when('/student',{
+                  templateUrl:"student.html",
+                  controller:"studentController"
+              }).otherwise({
+                  redirectTo:'/'
+              })
+          });
+
+          //Index Controller
+          app.controller('indexController',function($scope,$location){
+                $scope.goToLogin = function(){
+                    $location.path("/login")
+                }
+          })
+          
+          //Login Controller
+          app.controller('loginController',function($scope){
+
+          })
+
+          //student Controller
+          app.controller('studentController',function($scope){
+
+          })
+        </script>
+    </body>
+</html>
