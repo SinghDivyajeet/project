@@ -1,0 +1,23 @@
+<div class="card mt-3" id="forecast-cards" ng-repeat="i in weatherResult.list | filter : 'i'">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <h5 class="card-title"><i class="fas fa-city"></i> {{weatherResult.city.name}}, {{weatherResult.city.country}}</h5>
+      </div>
+      <div class="col-md-6 justify-content-between">
+        <p>Feels like : {{(i.main.temp)-273.15 | number:2}}&#8451;</p></small>
+      </div>
+    </div>
+    <p class="card-text"><i class="far fa-clock"></i> {{(i.dt*1000) | date:'MMM d, y'}}</p> 
+  </div>
+  <ul class="list-group list-group-flush" id="temp-list">
+    <li class="list-group-item"><i class="fas fa-temperature-high"></i> Temperature: {{(i.main.temp_min)-273.15 | number:2  }}&#8451; /{{(i.main.temp_max)-273.15 | number:2 }}&#8451;</li>
+    <li class="list-group-item"><i class="fas fa-cloud"></i> Weather: {{i.weather[0].main}}, {{i.weather[0].description}}</li>
+    <li class="list-group-item"><i class="fas fa-wind"></i> Wind : {{i.wind.speed}}</li>
+  </ul>
+  <div class="card-body">
+    <a href="#!/detail" class="card-link">View in Detail..
+
+    </a>
+  </div>
+</div>
