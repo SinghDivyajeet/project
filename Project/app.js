@@ -3,9 +3,14 @@ var app = angular.module("myApp", ["ngRoute", "ngResource"])
 
 app.controller("forecast", function ($scope, $resource, city) {
     $scope.name = city.name;
+    $scope.weatherResult = null;
     $scope.weatherAPI = $resource("http://api.openweathermap.org/data/2.5/forecast")
-    $scope.weatherResult = $scope.weatherAPI.get({ q: $scope.name, APPID: "c301a708741a222d62314f6e660a34ea" })
-    console.log("output is --", $scope.weatherResult);
+    $scope.weatherAPI.get({ q: $scope.name, APPID: "c301a708741a222d62314f6e660a34ea" }).$promise.then((res)=>{
+       
+      $scope.weatherResult = res
+      console.log("Promise Res->", res , $scope.weatherResult );
+    })
+    // console.log("output is --", $scope.weatherResult);
 
 })
 
@@ -76,7 +81,7 @@ app.config(function ($routeProvider) {
             templateUrl: "Pages/home.html",
             controller: "home"
         })
-        .when("/forecast", {
+        .when("!/forecast", {
             templateUrl: "Pages/forecast.html",
             controller: "forecast"
         })
