@@ -3,6 +3,7 @@ var app = angular.module("myApp", ["ngRoute", "ngResource"])
 
 app.controller("forecast", function ($scope, $resource, city) {
     $scope.name = city.name;
+    console.log($scope.name)
     $scope.weatherResult = null;
     $scope.weatherAPI = $resource("http://api.openweathermap.org/data/2.5/forecast")
     $scope.weatherAPI.get({ q: $scope.name, APPID: "c301a708741a222d62314f6e660a34ea" }).$promise.then((res)=>{
@@ -18,7 +19,41 @@ app.controller("home", function ($scope, $location) {
     $scope.submit = function(){
         $location.path("/forecast")
     }
+    
 })
+//Custom service
+app.service('city', function () {
+  this.name = "berlin"
+})
+
+app.controller("search", function ($scope, city) {
+  $scope.location = city.name;
+  $scope.$watch('location', function () {
+      city.name = $scope.location;
+  })
+})
+
+//Routes
+app.config(function ($routeProvider) {
+  $routeProvider
+      .when("/", {
+          templateUrl: "Pages/home.html",
+          controller: "home"
+      })
+      .when("/forecast", {
+          templateUrl: "Pages/forecast.html",
+          controller: "forecast"
+      })
+      .when("/detail", {
+          templateUrl: "Pages/detail.html",
+          controller: "detail"
+      })
+
+})
+
+
+
+
 app.controller("detail", function ($scope) {
    // chart colors
 var colors = ['#007bff','#28a745','#333333','#c3e6cb','#dc3545','#6c757d'];
@@ -62,35 +97,3 @@ if (chLine) {
   });
 }
 })
-//Custom service
-app.service('city', function () {
-    this.name = "berlin"
-})
-
-app.controller("search", function ($scope, city) {
-    $scope.location = city.name;
-    $scope.$watch('location', function () {
-        city.name = $scope.location;
-    })
-})
-
-//Routes
-app.config(function ($routeProvider) {
-    $routeProvider
-        .when("/", {
-            templateUrl: "Pages/home.html",
-            controller: "home"
-        })
-        .when("!/forecast", {
-            templateUrl: "Pages/forecast.html",
-            controller: "forecast"
-        })
-        .when("/detail", {
-            templateUrl: "Pages/detail.html",
-            controller: "detail"
-        })
-
-})
-
-
-

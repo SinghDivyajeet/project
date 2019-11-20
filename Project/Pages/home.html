@@ -1,5 +1,14 @@
+<style>
+button{
+  background: none;
+  border:0px;
+}
+</style>
 <div ng-controller="search">
-  <form class="form-inline my-2 my-lg-0" ng-submit="submit()">
+  <!-- <form class="form-inline my-2 my-lg-0" ng-submit="submit()">
+    <div>
+      
+    </div>
     <input
       class="form-control mr-sm-2"
       type="search"
@@ -8,5 +17,56 @@
       aria-label="Search"
     />
     <input type="submit" class="btn btn-success" value="Search" />
-  </form>
+  </form> -->
+  <div id="search-bar">
+    <div><i class="fa fa-bars" aria-hidden="true"></i></div>
+    <div>
+      <input
+        class="form-control mr-sm-2"
+        type="search"
+        placeholder="Search weather here..."
+        ng-model="location"
+        aria-label="Search"
+      />
+    </div>
+    <div>
+      <form ng-submit="submit()">
+        <button><i class="fa fa-search" aria-hidden="true"></i></button>
+      </form>
+    </div>
+  </div>
+  <hr />
+
+  <!-- Nav bar starts -->
+  <!-- Nav tabs -->
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages" aria-selected="false">Messages</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false">Settings</a>
+  </li>
+</ul>
+
+<!-- Nav bar ends -->
+
+<!-- Navbar data starts -->
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa, iure?</div>
+  <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum at reprehenderit ratione porro, ipsa commodi deserunt necessitatibus? Aperiam, nulla magnam!</div>
+  <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta harum voluptatum nostrum. Eum veritatis, adipisci error officiis ea libero debitis in accusamus, consectetur blanditiis molestiae dicta laborum facilis ipsum ullam.</div>
+  <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur accusantium officiis earum dolore distinctio facilis dignissimos, eaque minus dolorum. Fugiat qui ipsa doloremque deleniti ut, sunt voluptatibus quo neque. Soluta quae laborum obcaecati dolore repellat suscipit quam fugiat repudiandae sed!</div>
 </div>
+<!-- Navbar data ends -->
+
+<script>
+  
+  
+</script>
